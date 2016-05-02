@@ -75,4 +75,4 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 eval "$(jenv init -)"
 
 
-. ~/torch/install/bin/torch-activate
+. /Users/gigitsu/torch/install/bin/torch-activate
