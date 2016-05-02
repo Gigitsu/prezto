@@ -9,3 +9,6 @@
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+export PATH="~/miniconda3/bin:~/Developer/.bin:$PATH"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"

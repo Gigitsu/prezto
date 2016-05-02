@@ -71,3 +71,7 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+eval "$(jenv init -)"
+
+
+. ~/torch/install/bin/torch-activate
