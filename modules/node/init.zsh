@@ -32,3 +32,6 @@ if (( $+commands[npm] )); then
 
   unset cache_file
 fi
+
+# Add nbin alias to execute utilities from node_module/bin 
+alias nbin='PATH=$(npm bin):$PATH'
