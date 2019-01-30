@@ -14,3 +14,5 @@ fi
 DEFAULT_USER="gigitsu"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+test -e "/usr/local/opt/kube-ps1/share/kube-ps1.sh" && source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
