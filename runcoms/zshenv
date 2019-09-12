@@ -10,6 +10,4 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-export PATH="/Users/gigitsu/miniconda3/bin:/Users/gigitsu/Developer/.bin:$PATH"
-export GOPATH="$HOME/Developer/.go"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
