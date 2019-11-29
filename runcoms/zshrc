@@ -13,6 +13,13 @@ fi
 # Customize to your needs...
 DEFAULT_USER="gigitsu"
 
+# init asdf for versiom mangement
+test -e $(brew --prefix asdf)/asdf.sh && source $(brew --prefix asdf)/asdf.sh
+
+# init iterm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 test -e "/usr/local/opt/kube-ps1/share/kube-ps1.sh" && source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
