@@ -41,6 +41,7 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'homebrew' \
   'kubectl' \
+  'fzf' \
   'fasd' \
   'osx' \
   'docker' \
