@@ -97,4 +97,12 @@ function indicate_error() {
 # Indicate to user that fzf installation not found if nothing worked
 setup_using_debian_package || setup_using_base_dir || indicate_error
 
+if (( $+commands[rg] )); then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}"'
+  export FZF_CTRL_T_COMMAND='rg --files --hidden --follow -g "!{node_modules,.git}"'
+fi
+
+export FZF_DEFAULT_OPTS='--height 96% --reverse'
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview \"cat {}\""
+
 unset -f setup_using_debian_package setup_using_base_dir indicate_error

@@ -30,6 +30,7 @@ alias brewc='brew cleanup'
 alias brewi='brew install'
 alias brewL='brew leaves'
 alias brewl='brew list'
+alias brewh='brew help'
 alias brewo='brew outdated'
 alias brews='brew search'
 alias brewu='brew upgrade'
@@ -40,6 +41,7 @@ alias cask='brew cask'
 alias caskc='hb_deprecated brew cask cleanup'
 alias caskC='hb_deprecated brew cask cleanup'
 alias caski='brew cask install'
+alias caskh='brew cask help'
 alias caskl='brew cask list'
 alias casko='brew cask outdated'
 alias casks='hb_deprecated brew cask search'
@@ -54,3 +56,34 @@ function hb_deprecated {
 
   command brew "${cmd}" "${=cmd_args}"
 }
+
+if [ $commands[fzf] ]; then
+  function brew_install {
+    if [ -z $@ ]; then
+      fzf_search_install
+    else
+      command brew install $@
+    fi
+  }
+
+  function brew_search {
+    if [ -z $@ ]; then
+      fzf_search_install
+    else
+      command brew search $@
+    fi
+  }
+
+  function fzf_search_install {
+      local inst=$(brew search | fzf -m)
+
+      if [[ $inst ]]; then
+        for prog in $(echo $inst);
+        do; brew install $prog; done;
+      fi
+  }
+
+  alias brewi='brew_install'
+  alias brews='brew_search'
+fi
+

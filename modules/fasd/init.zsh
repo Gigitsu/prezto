@@ -9,48 +9,32 @@
 # Load dependencies.
 pmodload 'editor'
 
-# If the command doesn't exist externally, we need to fall back to the bundled
-# submodule.
-if (( ! $+commands[fasd] )); then
-  source "${0:h}/external/fasd" || return 1
-fi
+if [ $commands[fasd] ]; then # check if fasd is installed
+  #
+  # Initialization
+  #
 
-#
-# Initialization
-#
-
-cache_file="${TMPDIR:-/tmp}/prezto-fasd-cache.$UID.zsh"
-if [[ "${commands[fasd]}" -nt "$cache_file" \
-      || "${ZDOTDIR:-$HOME}/.zpreztorc" -nt "$cache_file" \
-      || ! -s "$cache_file"  ]]; then
-  # Set the base init arguments.
-  init_args=(zsh-hook)
-
-  # Set fasd completion init arguments, if applicable.
-  if zstyle -t ':prezto:module:completion' loaded; then
-    init_args+=(zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)
+  fasd_cache="${TMPDIR:-/tmp}/prezto-fasd-cache.$UID.zsh"
+  if [[ "${commands[fasd]}" -nt "$cache_file" \
+        || "${ZDOTDIR:-$HOME}/.zpreztorc" -nt "$cache_file" \
+        || ! -s "$cache_file"  ]]; then
+    fasd --init auto >| "$fasd_cache"
   fi
 
-  # Cache init code.
-  fasd --init "$init_args[@]" >! "$cache_file" 2> /dev/null
-fi
-
-source "$cache_file"
-
-unset cache_file init_args
-
-function fasd_cd {
-  local fasd_ret="$(fasd -d "$@")"
-  if [[ -d "$fasd_ret" ]]; then
-    cd "$fasd_ret"
+  if [ $commands[fzf] ]; then
+    jj() {
+      local dir
+      dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+    }
   else
-    print "$fasd_ret"
+    alias jj='zz'
   fi
-}
 
-#
-# Aliases
-#
+  source "$fasd_cache"
+  unset fasd_cache
 
-# Changes the current working directory interactively.
-alias j='fasd_cd -i'
+  alias v='f -e "$EDITOR"'
+  alias o='a -e xdg-open'
+  alias j='z'
+fi
+
