@@ -43,11 +43,12 @@ alias brewx='brew uninstall'
 alias cask='brew cask'
 alias caskc='hb_deprecated brew cask cleanup'
 alias caskC='hb_deprecated brew cask cleanup'
-alias caski='brew cask install'
 alias caskh='brew cask help'
+alias caski='brew cask install'
 alias caskl='brew cask list'
 alias casko='brew cask outdated'
 alias casks='hb_deprecated brew cask search'
+alias casku='brew cask upgrade'
 alias caskx='brew cask uninstall'
 
 function hb_deprecated {
