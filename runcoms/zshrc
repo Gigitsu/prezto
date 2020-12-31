@@ -12,9 +12,12 @@ fi
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+RUNCOMSDIR=$(dirname $(readlink ${(%):-%N}))
+PREZTODIR=$(dirname $RUNCOMSDIR)
+
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+if [[ -s "$PREZTODIR/init.zsh" ]]; then
+  source "$PREZTODIR/init.zsh"
 fi
 
 # Customize to your needs...
