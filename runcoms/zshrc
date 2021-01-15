@@ -23,9 +23,6 @@ fi
 # Customize to your needs...
 DEFAULT_USER="gigitsu"
 
-# init asdf for versiom mangement
-test -e $(brew --prefix asdf)/asdf.sh && source $(brew --prefix asdf)/asdf.sh
-
 # init iterm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
